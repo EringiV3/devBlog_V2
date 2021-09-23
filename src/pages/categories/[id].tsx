@@ -1,3 +1,4 @@
+import { Box, Heading } from '@chakra-ui/react';
 import {
   GetStaticPaths,
   GetStaticProps,
@@ -5,6 +6,7 @@ import {
   NextPage,
 } from 'next';
 import Layout from '../../components/Layout';
+import PostCard from '../../components/PostCard';
 import { getAllContents, microcmsClient } from '../../lib/microcms';
 import { CategoryResponse, PostListResponse, PostResponse } from '../../types';
 
@@ -16,7 +18,18 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const CategoryDetail: NextPage<PageProps> = ({ category, postList }) => {
   console.log({ category, postList });
-  return <Layout>categorydetail</Layout>;
+  return (
+    <Layout>
+      <Heading as="h1" color="blue.700">
+        Category: {category.category}
+      </Heading>
+      <Box marginTop="10">
+        {postList.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </Box>
+    </Layout>
+  );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
