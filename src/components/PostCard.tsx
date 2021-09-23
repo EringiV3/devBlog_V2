@@ -40,7 +40,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
       <Box marginTop="1">
         {formatPostContentForHeading(htmlToNode(post.content))}...
       </Box>
-      <Box>
+      <Box textAlign="right">
         <NextLink href={`/posts/${post.id}`}>
           <Link
             color="blue.700"

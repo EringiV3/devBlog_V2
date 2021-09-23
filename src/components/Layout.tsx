@@ -38,7 +38,7 @@ const Layout: React.FC = ({ children }) => {
           </Link>
         </Flex>
         <Box padding="5">{children}</Box>
-        <Flex justifyContent="center" margin="5">
+        <Flex justifyContent="center" padding="5">
           © 2021 by eringiv3. All rights reserved.
         </Flex>
       </Container>
