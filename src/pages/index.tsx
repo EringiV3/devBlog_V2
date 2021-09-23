@@ -1,9 +1,9 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import { microcmsClient } from '../lib/microcms';
-import type { PostListResponse } from '../types';
+import { getAllContents } from '../lib/microcms';
+import type { PostListResponse, PostResponse } from '../types';
 
 type StaticProps = {
-  postList: PostListResponse;
+  postList: PostResponse[];
 };
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -13,9 +13,8 @@ const Home: NextPage<PageProps> = ({ postList }) => {
 };
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
-  const postList = await microcmsClient.get<PostListResponse>({
-    endpoint: 'post',
-  });
+  const allPostList = await getAllContents<PostListResponse>('post');
+  const postList = allPostList.flatMap((postList) => postList.contents);
 
   return {
     props: {

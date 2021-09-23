@@ -1,9 +1,11 @@
-export type ListContentsResponse<T> = {
-  contents: T[];
+export type ListContentPaginationInfo = {
   totalCount: number;
   offset: number;
   limit: number;
 };
+export type ListContentsResponse<T> = {
+  contents: T[];
+} & ListContentPaginationInfo;
 
 export type ContentResponse<T> = {
   id?: string;
