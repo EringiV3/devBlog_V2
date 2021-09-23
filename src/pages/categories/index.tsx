@@ -1,6 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import { getAllContents } from '../lib/microcms';
-import type { CategoryListResponse, CategoryResponse } from '../types';
+import { getAllContents } from '../../lib/microcms';
+import type { CategoryListResponse, CategoryResponse } from '../../types';
 
 type StaticProps = {
   categoryList: CategoryResponse[];

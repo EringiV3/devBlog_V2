@@ -12,7 +12,7 @@ type StaticProps = {
 };
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Home: NextPage<PageProps> = ({ post }) => {
+const PostDetail: NextPage<PageProps> = ({ post }) => {
   console.log({ post });
   return <div>postdetail</div>;
 };
@@ -44,4 +44,4 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   };
 };
 
-export default Home;
+export default PostDetail;

@@ -6,8 +6,10 @@ export const microcmsClient = createClient({
   apiKey: process.env.MICRO_CMS_API_KEY ?? '',
 });
 
+// TODO: テスト書く
 export const getAllContents = async <T extends ListContentPaginationInfo>(
-  endPoint: string
+  endPoint: string,
+  filters?: string
 ): Promise<T[]> => {
   const LIMIT = 10;
   const firstContent = await microcmsClient.get<T>({
@@ -15,6 +17,7 @@ export const getAllContents = async <T extends ListContentPaginationInfo>(
     queries: {
       offset: 0,
       limit: LIMIT,
+      filters,
     },
   });
 
@@ -32,6 +35,7 @@ export const getAllContents = async <T extends ListContentPaginationInfo>(
         queries: {
           offset: query.offset,
           limit: query.limit,
+          filters,
         },
       })
     )
