@@ -4,6 +4,7 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
+import Layout from '../../components/Layout';
 import { microcmsClient } from '../../lib/microcms';
 import type { PostResponse } from '../../types';
 
@@ -14,7 +15,7 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const PostDetail: NextPage<PageProps> = ({ post }) => {
   console.log({ post });
-  return <div>postdetail</div>;
+  return <Layout>postdetail</Layout>;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

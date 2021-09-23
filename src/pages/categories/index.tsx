@@ -1,4 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import Layout from '../../components/Layout';
 import { getAllContents } from '../../lib/microcms';
 import type { CategoryListResponse, CategoryResponse } from '../../types';
 
@@ -8,7 +9,7 @@ type StaticProps = {
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 const Categories: NextPage<PageProps> = ({ categoryList }) => {
   console.log({ categoryList });
-  return <div>category</div>;
+  return <Layout>category</Layout>;
 };
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
