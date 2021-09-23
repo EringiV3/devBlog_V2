@@ -1,4 +1,12 @@
-import { Badge, Box, Heading, Link } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertIcon,
+  Badge,
+  Box,
+  Flex,
+  Heading,
+  Link,
+} from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import {
   GetStaticPaths,
@@ -14,12 +22,32 @@ import type { PostResponse } from '../../types';
 
 type StaticProps = {
   post: PostResponse;
+  draftKey: string | null;
 };
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const PostDetail: NextPage<PageProps> = ({ post }) => {
+const PostDetail: NextPage<PageProps> = ({ post, draftKey }) => {
   return (
     <Layout>
+      {draftKey && (
+        <Box marginBottom="10">
+          <Alert status="warning">
+            <Box>
+              <Flex>
+                <AlertIcon />
+                プレビュー表示がONになっています。
+              </Flex>
+              <Box>
+                <NextLink href={`/api/exitPreview`}>
+                  <Link textDecoration="underline" color="blue.700">
+                    プレビュー表示をOFFにする
+                  </Link>
+                </NextLink>
+              </Box>
+            </Box>
+          </Alert>
+        </Box>
+      )}
       <Heading color="blue.700" as="h1">
         {post.title}
       </Heading>
@@ -53,7 +81,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
-  const { params } = context;
+  const { params, previewData } = context;
+  const draftKey: string | null = (previewData as any)?.draftKey
+    ? (previewData as any)?.draftKey
+    : null;
   if (params === undefined) {
     throw new Error('Invalid Params');
   }
@@ -62,11 +93,17 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const post = await microcmsClient.get<PostResponse>({
     endpoint: 'post',
     contentId: postId,
+    queries: draftKey ? { draftKey } : {},
   });
+
+  if (!post) {
+    return { notFound: true };
+  }
 
   return {
     props: {
       post,
+      draftKey,
     },
     revalidate: 60,
   };
