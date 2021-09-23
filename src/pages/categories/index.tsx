@@ -10,7 +10,6 @@ type StaticProps = {
 };
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 const Categories: NextPage<PageProps> = ({ categoryList }) => {
-  console.log({ categoryList });
   return (
     <Layout>
       <Heading as="h1" color="blue.700">

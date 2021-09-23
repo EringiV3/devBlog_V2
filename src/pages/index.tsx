@@ -10,7 +10,6 @@ type StaticProps = {
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Home: NextPage<PageProps> = ({ postList }) => {
-  console.log({ postList });
   return (
     <Layout>
       {postList.map((post) => (

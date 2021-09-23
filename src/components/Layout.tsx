@@ -32,7 +32,7 @@ const Layout: React.FC = ({ children }) => {
             fontWeight="bold"
             marginLeft="5"
             isExternal
-            href="https://google.com"
+            href={process.env.PROFILE_SITE_URL}
           >
             Profile
           </Link>

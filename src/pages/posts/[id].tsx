@@ -18,7 +18,6 @@ type StaticProps = {
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const PostDetail: NextPage<PageProps> = ({ post }) => {
-  console.log({ post });
   return (
     <Layout>
       <Heading color="blue.700" as="h1">
