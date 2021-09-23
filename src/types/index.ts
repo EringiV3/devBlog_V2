@@ -15,19 +15,19 @@ export type ContentResponse<T> = {
   revisedAt?: string;
 } & T;
 
-export type PostResponse = {
+export type PostResponse = ContentResponse<{
   title: string;
   slug: string;
   publishDate: string;
   content: string;
   category: CategoryResponse[];
-};
+}>;
 
 export type PostListResponse = ListContentsResponse<PostResponse>;
 
-export type CategoryResponse = {
+export type CategoryResponse = ContentResponse<{
   category: string;
   slug: string;
-};
+}>;
 
 export type CategoryListResponse = ListContentsResponse<CategoryResponse>;

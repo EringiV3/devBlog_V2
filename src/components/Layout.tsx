@@ -12,7 +12,7 @@ const Layout: React.FC = ({ children }) => {
       >
         <Box backgroundColor="blue.700" padding="5">
           <NextLink href="/">
-            <Link color="white">
+            <Link color="white" display="inline-block">
               <Heading>eringiv3.dev</Heading>
             </Link>
           </NextLink>
@@ -38,8 +38,8 @@ const Layout: React.FC = ({ children }) => {
           </Link>
         </Flex>
         <Box padding="5">{children}</Box>
-        <Flex justifyContent="center">
-          © 2020 by eringiv3. All rights reserved.
+        <Flex justifyContent="center" margin="5">
+          © 2021 by eringiv3. All rights reserved.
         </Flex>
       </Container>
     </Box>

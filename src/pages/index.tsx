@@ -1,5 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Layout from '../components/Layout';
+import PostCard from '../components/PostCard';
 import { getAllContents } from '../lib/microcms';
 import type { PostListResponse, PostResponse } from '../types';
 
@@ -10,7 +11,13 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Home: NextPage<PageProps> = ({ postList }) => {
   console.log({ postList });
-  return <Layout>hoge</Layout>;
+  return (
+    <Layout>
+      {postList.map((post) => (
+        <PostCard key={post.id} post={post} />
+      ))}
+    </Layout>
+  );
 };
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
