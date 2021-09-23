@@ -21,6 +21,7 @@ const Categories: NextPage<PageProps> = ({ categoryList }) => {
           <Box key={category.id} _notFirst={{ marginTop: '20px' }}>
             <NextLink href={`/categories/${category.id}`}>
               <Link color="blue.700" display="inline-block">
+                {/* TODO カテゴリごとの投稿件数表示するようにする */}
                 <Heading size="md">{`${category.category}`}</Heading>
               </Link>
             </NextLink>
