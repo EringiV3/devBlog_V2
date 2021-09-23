@@ -20,14 +20,14 @@ export type PostResponse = {
   slug: string;
   publishDate: string;
   content: string;
-  category: any[];
+  category: CategoryResponse[];
 };
 
 export type PostListResponse = ListContentsResponse<PostResponse>;
 
 export type CategoryResponse = {
   category: string;
-  categorySlug: string;
+  slug: string;
 };
 
 export type CategoryListResponse = ListContentsResponse<CategoryResponse>;
