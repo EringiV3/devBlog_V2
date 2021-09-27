@@ -1,3 +1,4 @@
+import { SearchIcon } from '@chakra-ui/icons';
 import { Box, Container, Flex, Heading, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
@@ -10,13 +11,23 @@ const Layout: React.FC = ({ children }) => {
         minHeight="100vh"
         padding="0"
       >
-        <Box backgroundColor="blue.700" padding="5">
+        <Flex
+          backgroundColor="blue.700"
+          padding="5"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <NextLink href="/">
             <Link color="white" display="inline-block">
               <Heading>eringiv3.dev</Heading>
             </Link>
           </NextLink>
-        </Box>
+          <NextLink href="/search">
+            <Link display="inline-block">
+              <SearchIcon color="white" />
+            </Link>
+          </NextLink>
+        </Flex>
         <Flex
           alignItems="center"
           color="blue.700"
