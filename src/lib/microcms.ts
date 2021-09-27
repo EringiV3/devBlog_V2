@@ -1,5 +1,5 @@
 import { createClient } from 'microcms-js-sdk';
-import type { ListContentPaginationInfo } from '../types';
+import type { ListContentPaginationInfo, PostResponse } from '../types';
 
 export const microcmsClient = createClient({
   serviceDomain: process.env.MICRO_CMS_SERVICE_DOMAIN ?? '',
@@ -42,4 +42,8 @@ export const getAllContents = async <T extends ListContentPaginationInfo>(
   );
 
   return [firstContent, ...contents];
+};
+
+export const isMicrocmsPost = (content: any): content is PostResponse => {
+  return content.slug !== undefined;
 };

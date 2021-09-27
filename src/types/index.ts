@@ -31,3 +31,20 @@ export type CategoryResponse = ContentResponse<{
 }>;
 
 export type CategoryListResponse = ListContentsResponse<CategoryResponse>;
+
+export type ZennFeedItem = {
+  content: string;
+  contentSnippet: string;
+  creator: string;
+  'dc:creator': string;
+  enclosure: {
+    length: string;
+    type: string;
+    url: string;
+  };
+  guid: string;
+  isoDate: string;
+  link: string;
+  pubDate: string;
+  title: string;
+};
