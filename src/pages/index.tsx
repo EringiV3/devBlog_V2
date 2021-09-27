@@ -5,6 +5,7 @@ import PostCard from '../components/PostCard';
 import { getAllContents, isMicrocmsPost } from '../lib/microcms';
 import { getZennFeedItems } from '../lib/zenn';
 import type { PostListResponse, PostResponse, ZennFeedItem } from '../types';
+import { sortByDate } from '../utils/arrayHelpers';
 
 type StaticProps = {
   postOrFeedList: (PostResponse | ZennFeedItem)[];
@@ -30,21 +31,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   const postList = allPostList.flatMap((postList) => postList.contents);
   const zennFeed = await getZennFeedItems();
   const postOrFeedList = [...postList, ...zennFeed];
-  postOrFeedList.sort((a, b) => {
-    if (isMicrocmsPost(a) && isMicrocmsPost(b)) {
-      return (
-        +new Date(b.publishedAt as string) - +new Date(a.publishedAt as string)
-      );
-    } else if (isMicrocmsPost(a) && !isMicrocmsPost(b)) {
-      return +new Date(b.isoDate) - +new Date(a.publishedAt as string);
-    } else if (!isMicrocmsPost(a) && isMicrocmsPost(b)) {
-      return +new Date(b.publishedAt as string) - +new Date(a.isoDate);
-    } else if (!isMicrocmsPost(a) && !isMicrocmsPost(b)) {
-      return +new Date(b.isoDate) - +new Date(a.isoDate);
-    } else {
-      throw new Error('Invalid type.');
-    }
-  });
+  postOrFeedList.sort(sortByDate);
 
   return {
     props: {
