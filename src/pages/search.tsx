@@ -28,7 +28,12 @@ const Search: NextPage<PageProps> = ({ postOrFeedList }) => {
   };
 
   const hitList =
-    value === '' ? [] : postOrFeedList.filter((v) => v.title.includes(value));
+    value === ''
+      ? []
+      : postOrFeedList.filter((v) => {
+          const searchTarget = v.title.toLowerCase();
+          return searchTarget.includes(value.toLowerCase());
+        });
 
   return (
     <Layout>
