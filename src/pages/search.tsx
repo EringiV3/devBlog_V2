@@ -7,6 +7,7 @@ import {
   InputRightElement,
 } from '@chakra-ui/react';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import React, { useState } from 'react';
 import FeedCard from '../components/FeedCard';
 import Layout from '../components/Layout';
@@ -36,32 +37,35 @@ const Search: NextPage<PageProps> = ({ postOrFeedList }) => {
         });
 
   return (
-    <Layout>
-      <InputGroup>
-        <Input placeholder="記事タイトルを検索" onChange={handleChange} />
-        <InputRightElement>
-          <SearchIcon />
-        </InputRightElement>
-      </InputGroup>
-      <Box marginTop="10">
-        {hitList.length !== 0 ? (
-          <Heading as="h1" color="blue.700">
-            検索結果
-          </Heading>
-        ) : value !== '' ? (
-          <Box>記事が見つかりませんでした。</Box>
-        ) : null}
-        <Box marginTop="5">
-          {hitList.map((postOrFeed, i) =>
-            isMicrocmsPost(postOrFeed) ? (
-              <PostCard key={postOrFeed.id} post={postOrFeed} />
-            ) : (
-              <FeedCard key={i} feedItem={postOrFeed} />
-            )
-          )}
+    <>
+      <NextSeo title="記事検索" description="記事検索ページです" />
+      <Layout>
+        <InputGroup>
+          <Input placeholder="記事タイトルを検索" onChange={handleChange} />
+          <InputRightElement>
+            <SearchIcon />
+          </InputRightElement>
+        </InputGroup>
+        <Box marginTop="10">
+          {hitList.length !== 0 ? (
+            <Heading as="h1" color="blue.700">
+              検索結果
+            </Heading>
+          ) : value !== '' ? (
+            <Box>記事が見つかりませんでした。</Box>
+          ) : null}
+          <Box marginTop="5">
+            {hitList.map((postOrFeed, i) =>
+              isMicrocmsPost(postOrFeed) ? (
+                <PostCard key={postOrFeed.id} post={postOrFeed} />
+              ) : (
+                <FeedCard key={i} feedItem={postOrFeed} />
+              )
+            )}
+          </Box>
         </Box>
-      </Box>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 

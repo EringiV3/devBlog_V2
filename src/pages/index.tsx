@@ -1,4 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import FeedCard from '../components/FeedCard';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
@@ -14,15 +15,18 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Home: NextPage<PageProps> = ({ postOrFeedList }) => {
   return (
-    <Layout>
-      {postOrFeedList.map((postOrFeed, i) =>
-        isMicrocmsPost(postOrFeed) ? (
-          <PostCard key={postOrFeed.id} post={postOrFeed} />
-        ) : (
-          <FeedCard key={i} feedItem={postOrFeed} />
-        )
-      )}
-    </Layout>
+    <>
+      <NextSeo title="記事一覧" description="記事一覧ページです" />
+      <Layout>
+        {postOrFeedList.map((postOrFeed, i) =>
+          isMicrocmsPost(postOrFeed) ? (
+            <PostCard key={postOrFeed.id} post={postOrFeed} />
+          ) : (
+            <FeedCard key={i} feedItem={postOrFeed} />
+          )
+        )}
+      </Layout>
+    </>
   );
 };
 

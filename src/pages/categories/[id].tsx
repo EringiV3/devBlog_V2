@@ -5,6 +5,7 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
+import { NextSeo } from 'next-seo';
 import Layout from '../../components/Layout';
 import PostCard from '../../components/PostCard';
 import { getAllContents, microcmsClient } from '../../lib/microcms';
@@ -18,16 +19,22 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const CategoryDetail: NextPage<PageProps> = ({ category, postList }) => {
   return (
-    <Layout>
-      <Heading as="h1" color="blue.700">
-        Category: {category.category}
-      </Heading>
-      <Box marginTop="10">
-        {postList.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </Box>
-    </Layout>
+    <>
+      <NextSeo
+        title={`Category: ${category.category}`}
+        description={`${category.category}の記事一覧ページ`}
+      />
+      <Layout>
+        <Heading as="h1" color="blue.700">
+          Category: {category.category}
+        </Heading>
+        <Box marginTop="10">
+          {postList.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </Box>
+      </Layout>
+    </>
   );
 };
 
