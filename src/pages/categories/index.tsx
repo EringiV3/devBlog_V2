@@ -1,5 +1,6 @@
 import { Box, Heading, Link } from '@chakra-ui/react';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import NextLink from 'next/link';
 import Layout from '../../components/Layout';
 import { getAllContents } from '../../lib/microcms';
@@ -15,22 +16,25 @@ type StaticProps = {
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 const Categories: NextPage<PageProps> = ({ categoryInfoList }) => {
   return (
-    <Layout>
-      <Heading as="h1" color="blue.700">
-        Categories
-      </Heading>
-      <Box marginTop="40px">
-        {categoryInfoList.map((category) => (
-          <Box key={category.id} _notFirst={{ marginTop: '20px' }}>
-            <NextLink href={`/categories/${category.id}`}>
-              <Link color="blue.700" display="inline-block">
-                <Heading size="md">{`${category.category} (${category.postCount})`}</Heading>
-              </Link>
-            </NextLink>
-          </Box>
-        ))}
-      </Box>
-    </Layout>
+    <>
+      <NextSeo title="カテゴリ一覧" description="カテゴリ一覧ページです" />
+      <Layout>
+        <Heading as="h1" color="blue.700">
+          Categories
+        </Heading>
+        <Box marginTop="40px">
+          {categoryInfoList.map((category) => (
+            <Box key={category.id} _notFirst={{ marginTop: '20px' }}>
+              <NextLink href={`/categories/${category.id}`}>
+                <Link color="blue.700" display="inline-block">
+                  <Heading size="md">{`${category.category} (${category.postCount})`}</Heading>
+                </Link>
+              </NextLink>
+            </Box>
+          ))}
+        </Box>
+      </Layout>
+    </>
   );
 };
 
