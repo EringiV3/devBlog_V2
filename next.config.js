@@ -6,6 +6,7 @@ module.exports = {
     PROFILE_SITE_URL: process.env.PROFILE_SITE_URL,
     ZENN_FEED_URL: process.env.ZENN_FEED_URL,
     TWITTER_ACCOUNT: process.env.TWITTER_ACCOUNT,
+    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
   },
   reactStrictMode: true,
 };
