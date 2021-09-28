@@ -32,6 +32,14 @@ export type CategoryResponse = ContentResponse<{
 
 export type CategoryListResponse = ListContentsResponse<CategoryResponse>;
 
+export type OgpResponse = ContentResponse<{
+  image: {
+    url: string;
+    width: number;
+    height: number;
+  };
+}>;
+
 export type ZennFeedItem = {
   content: string;
   contentSnippet: string;

@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^1.6.8",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "base64url": "^3.0.1",
     "cheerio": "^1.0.0-rc.10",
     "dayjs": "^1.10.7",
     "framer-motion": "^4",
