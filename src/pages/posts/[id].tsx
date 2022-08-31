@@ -68,7 +68,7 @@ const PostDetail: NextPage<PageProps> = ({ post, draftKey, ogpImageUrl }) => {
                   プレビュー表示がONになっています。
                 </Flex>
                 <Box>
-                  <NextLink href={`/api/exitPreview`}>
+                  <NextLink href={`/api/exitPreview`} passHref>
                     <Link textDecoration="underline" color="blue.700">
                       プレビュー表示をOFFにする
                     </Link>
@@ -89,7 +89,7 @@ const PostDetail: NextPage<PageProps> = ({ post, draftKey, ogpImageUrl }) => {
         </Box>
         <Box>
           {post.category.map((v) => (
-            <NextLink href={`/categories/${v.id}`} key={v.id}>
+            <NextLink href={`/categories/${v.id}`} key={v.id} passHref>
               <Link _notFirst={{ marginLeft: '10px' }}>
                 <Badge variant="solid" colorScheme="blue" textTransform="none">
                   {v.category}

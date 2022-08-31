@@ -17,12 +17,12 @@ const Layout: React.FC = ({ children }) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <NextLink href="/">
+          <NextLink href="/" passHref>
             <Link color="white" display="inline-block">
               <Heading>eringiv3.dev</Heading>
             </Link>
           </NextLink>
-          <NextLink href="/search">
+          <NextLink href="/search" passHref>
             <Link display="inline-block">
               <SearchIcon color="white" />
             </Link>
@@ -36,7 +36,7 @@ const Layout: React.FC = ({ children }) => {
           borderBottom="1px"
           borderColor="gray.300"
         >
-          <NextLink href="/categories">
+          <NextLink href="/categories" passHref>
             <Link fontWeight="bold">Category</Link>
           </NextLink>
           <Link
