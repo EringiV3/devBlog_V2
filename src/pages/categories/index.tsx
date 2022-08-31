@@ -25,7 +25,7 @@ const Categories: NextPage<PageProps> = ({ categoryInfoList }) => {
         <Box marginTop="40px">
           {categoryInfoList.map((category) => (
             <Box key={category.id} _notFirst={{ marginTop: '20px' }}>
-              <NextLink href={`/categories/${category.id}`}>
+              <NextLink href={`/categories/${category.id}`} passHref>
                 <Link color="blue.700" display="inline-block">
                   <Heading size="md">{`${category.category} (${category.postCount})`}</Heading>
                 </Link>

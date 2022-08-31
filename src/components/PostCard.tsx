@@ -14,7 +14,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
   return (
     <Box _notFirst={{ marginTop: '50px' }}>
       <Box>
-        <NextLink href={`/posts/${post.id}`}>
+        <NextLink href={`/posts/${post.id}`} passHref>
           <Link color="blue.700" display="inline-block">
             <Heading size="md">{post.title}</Heading>
           </Link>
@@ -28,7 +28,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
       </Box>
       <Box>
         {post.category.map((v) => (
-          <NextLink href={`/categories/${v.id}`} key={v.id}>
+          <NextLink href={`/categories/${v.id}`} key={v.id} passHref>
             <Link _notFirst={{ marginLeft: '10px' }}>
               <Badge variant="solid" colorScheme="blue" textTransform="none">
                 {v.category}
@@ -41,7 +41,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
         {formatPostContentForHeading(htmlToNode(post.content))}...
       </Box>
       <Box textAlign="right">
-        <NextLink href={`/posts/${post.id}`}>
+        <NextLink href={`/posts/${post.id}`} passHref>
           <Link
             color="blue.700"
             display="inline-block"
